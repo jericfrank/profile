@@ -1,16 +1,23 @@
+import { Container } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { MenuBar } from './components/MenuBar';
+import Introduction from './components/Introduction';
+import Contact from './components/Contact';
+import Career from './components/Career';
+
 function App() {
   return (
-    <div style={{ height: '100vh', width: '100vw', margin: 0, padding: 0 }}>
-      <iframe
-        title="Resume Preview"
-        src="https://docs.google.com/document/d/1_qxg9X6YrdlUPEwGFf3B9tUGmlnjQge0MqV69F1yQ0U/preview"
-        width="100%"
-        height="100%"
-        frameBorder={0}
-        style={{ border: 'none' }}
-        allowFullScreen
-      />
-    </div>
+    <Router>
+      <MenuBar />
+      <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
+        <Routes>
+          <Route path="/" element={<Introduction/>} />
+          <Route path="/career" element={<Career />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Container>
+    </Router>
   );
 }
 
