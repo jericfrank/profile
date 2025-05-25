@@ -75,6 +75,10 @@ export const TECH_STACKS = {
     {
       name: "AWS (EC2, S3)",
       iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+    },
+    {
+      name: "Firebase",
+      iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg",
     }
   ],
 };
