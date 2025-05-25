@@ -1,0 +1,61 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:18.17.0
+    working_directory: ~/profile
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: npm ci
+
+      - run:
+          name: Build React app
+          command: npm run build
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build
+
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    working_directory: ~/profile
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Setup SSH Key
+          command: |
+            echo "$EC2_SSH_KEY" > ~/ec2_key.pem
+            chmod 600 ~/ec2_key.pem
+
+      - run:
+          name: Copy build folder to EC2
+          command: |
+            scp -i ~/ec2_key.pem -r -o StrictHostKeyChecking=no ./build $EC2_USER@$EC2_HOST:/home/ubuntu/profile
+
+      - run:
+          name: Restart Docker container on EC2
+          command: |
+            ssh -i ~/ec2_key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST "
+              docker build --no-cache -t profile . &&
+              docker stop container-profile || true &&
+              docker rm container-profile || true &&
+              docker run -d --name container-profile -p 80:80 profile
+            "
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
