@@ -34,23 +34,25 @@ jobs:
       - run:
           name: Setup SSH Key
           command: |
-            echo "$EC2_SSH_KEY" > ~/ec2_key.pem
-            chmod 600 ~/ec2_key.pem
+            mkdir -p ~/.ssh
+            echo -e "$EC2_SSH_KEY" > ~/.ssh/ec2_key.pem
+            chmod 600 ~/.ssh/ec2_key.pem
 
       - run:
           name: Copy build folder to EC2
           command: |
-            scp -i ~/ec2_key.pem -r -o StrictHostKeyChecking=no ./build $EC2_USER@$EC2_HOST:/home/ubuntu/profile
+            scp -i ~/.ssh/ec2_key.pem -o StrictHostKeyChecking=no -r ./build "$EC2_USER@$EC2_HOST:/home/ubuntu/profile"
 
       - run:
           name: Restart Docker container on EC2
           command: |
-            ssh -i ~/ec2_key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST:/home/ubuntu/profile "
-              docker stop container-profile || true &&
-              docker rm container-profile || true &&
-              docker build --no-cache -t profile . &&
+            ssh -i ~/.ssh/ec2_key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST \<< 'EOF'
+              cd /home/ubuntu/profile
+              docker stop container-profile || true
+              docker rm container-profile || true
+              docker build --no-cache -t profile .
               docker run -d --name container-profile -p 80:80 profile
-            "
+            EOF
 
 workflows:
   build-and-deploy:
