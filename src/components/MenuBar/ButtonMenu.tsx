@@ -1,7 +1,8 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button } from '@mui/material';
+import { Button, IconButton, Tooltip } from '@mui/material';
+import { GitHub } from '@mui/icons-material';
 
 import { MenuItem } from './constants';
 
@@ -23,6 +24,18 @@ export function ButtonMenu({ menuItems }: Props) {
           {it.title}
         </Button>
       ))}
+      <Tooltip title="View Source Code" arrow>
+        <IconButton
+          component="a"
+          href="https://github.com/jericfrank/profile"
+          target="_blank"
+          rel="noopener noreferrer"
+          color="inherit"
+          sx={{ ml: 1 }}
+        >
+          <GitHub />
+        </IconButton>
+      </Tooltip>
     </Fragment>
   );
 }

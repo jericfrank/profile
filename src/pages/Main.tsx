@@ -1,4 +1,5 @@
 import Career from '../components/Career';
+import Footer from '../components/Footer';
 import Introduction from '../components/Introduction';
 import TechStack from '../components/TechStack';
 
@@ -8,6 +9,7 @@ function Main() {
       <Introduction />
       <Career />
       <TechStack />
+      <Footer />
     </>
   );
 }

@@ -9,7 +9,7 @@ import {
   ListItemText,
   ListItemButton,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { GitHub, Menu } from '@mui/icons-material';
 
 import { MenuItem } from './constants';
 
@@ -33,7 +33,7 @@ export function DrawerMobile({ menuItems }: Props) {
         onClick={toggleMenu}
         aria-label="menu"
       >
-        <MenuIcon />
+        <Menu />
       </IconButton>
       <Drawer anchor="right" open={isMenuOpen} onClose={toggleMenu}>
         <List sx={{ width: 200 }}>
@@ -44,6 +44,19 @@ export function DrawerMobile({ menuItems }: Props) {
               </ListItemButton>
             </ListItem>
           ))}
+          <ListItem disablePadding component="li">
+            <IconButton
+              component="a"
+              href="https://github.com/jericfrank/profile"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="inherit"
+              sx={{ ml: 1 }}
+            >
+              <GitHub />
+            </IconButton>
+            <ListItemText primary="Source Code" />
+          </ListItem>
         </List>
       </Drawer>
     </>
