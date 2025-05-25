@@ -13,7 +13,7 @@ export default function Footer() {
         spacing={2}
       >
         <Typography variant="body2" color="text.secondary">
-          © {new Date().getFullYear()} Personal Website - [Testing Circle CI]
+          © {new Date().getFullYear()} Personal Website
         </Typography>
 
         <Stack direction="row" spacing={2}>
