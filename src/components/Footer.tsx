@@ -3,7 +3,7 @@ import { GitHub, LinkedIn, Mail } from '@mui/icons-material';
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ mt: 10, py: 4, bgcolor: 'background.paper' }}>
+    <Box component="footer" sx={{ mt: 10, bgcolor: 'background.paper' }}>
       <Divider sx={{ mb: 3 }} />
 
       <Stack
@@ -11,7 +11,6 @@ export default function Footer() {
         justifyContent="space-between"
         alignItems="center"
         spacing={2}
-        sx={{ px: { xs: 2, sm: 6 } }}
       >
         <Typography variant="body2" color="text.secondary">
           © {new Date().getFullYear()} Personal Website
