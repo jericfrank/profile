@@ -3,14 +3,18 @@ import {
   Box,
 } from '@mui/material';
 
-function Introduction() {
+interface Props {
+  summaryText: string;
+}
+
+function Introduction({ summaryText }: Props) {
   return (
     <Box id="intro" sx={{ mb: 6, mt: 10 }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Hi, I'm Jerec Frank.
       </Typography>
-      <Typography sx={{ fontSize: '2.8rem', fontWeight: 700 }}>
-        Delivering scalable, clean, high-performance apps — driven by teamwork and user-first solutions.
+      <Typography sx={{ fontSize: '4rem', fontWeight: 700 }}>
+        {summaryText}
       </Typography>
     </Box>
   );
