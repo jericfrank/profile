@@ -8,22 +8,7 @@ import {
 } from '@mui/material';
 import { ButtonMenu } from './ButtonMenu';
 import { DrawerMobile } from './DrawerMobile';
-
-export type MenuItem = {
-  title: string;
-  path: string;
-};
-
-const MENU_ITEM: MenuItem[] = [
-  {
-    title: 'Career',
-    path: '/career',
-  },
-  {
-    title: 'Get in Touch',
-    path: '/contact',
-  }
-];
+import { MENU_ITEM } from './constants';
 
 export function MenuBar() {
   const theme = useTheme();
@@ -35,7 +20,7 @@ export function MenuBar() {
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: 'transparent',
+        bgcolor: '#fff',
         boxShadow: 'none',
         color: 'black',
       }}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Button } from '@mui/material';
 
-import { MenuItem } from '.';
+import { MenuItem } from './constants';
 
 interface Props {
   menuItems: MenuItem[];
