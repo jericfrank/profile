@@ -45,16 +45,22 @@ export function DrawerMobile({ menuItems, onClickGithub }: Props) {
               </ListItemButton>
             </ListItem>
           ))}
-          <ListItem disablePadding component="li">
-            <IconButton
-              component="a"
-              href="https://github.com/jericfrank/profile"
-              target="_blank"
-              rel="noopener noreferrer"
-              color="inherit"
-              sx={{ ml: 1 }}
-              onClick={onClickGithub}
-            >
+          <ListItem
+            disablePadding
+            component="a"
+            href="https://github.com/jericfrank/profile"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onClickGithub}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              textDecoration: 'none',
+              color: 'inherit',
+              px: 2.2
+            }}
+          >
+            <IconButton edge="start" color="inherit">
               <GitHub />
             </IconButton>
             <ListItemText primary="Source Code" />
