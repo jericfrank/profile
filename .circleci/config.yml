@@ -51,7 +51,7 @@ jobs:
               docker stop container-profile || true
               docker rm container-profile || true
               docker build --no-cache -t profile .
-              docker run -d --name container-profile -p 80:80 profile
+              docker run -d --name container-profile -p 127.0.0.1:8080:80 profile
             EOF
 
 workflows:
