@@ -2,6 +2,12 @@
 
 This project demonstrates a production-ready ReactJS app styled with Material UI, containerized using Docker, served via NGINX, deployed on an AWS EC2 instance with HTTPS enabled using Certbot SSL, and automated deployment with CircleCI.
 
+- **Custom Domain**: [https://jerecfrank.com](https://jerecfrank.com)
+- **EC2 Public URL**: [http://ec2-54-146-215-207.compute-1.amazonaws.com](http://ec2-54-146-215-207.compute-1.amazonaws.com)
+
+> The custom domain uses SSL with HTTPS via Certbot + Nginx.
+> The EC2 URL is available for direct access.
+> 
 ---
 
 ## Stack
