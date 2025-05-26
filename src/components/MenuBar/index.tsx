@@ -1,4 +1,7 @@
+import { useCallback } from 'react';
+import ga from 'react-ga4';
 import { Link as RouterLink } from 'react-router-dom';
+
 import {
   AppBar,
   Toolbar,
@@ -6,6 +9,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+
 import { ButtonMenu } from './ButtonMenu';
 import { DrawerMobile } from './DrawerMobile';
 import { MENU_ITEM } from './constants';
@@ -14,6 +18,14 @@ export function MenuBar() {
   const theme = useTheme();
 
   const smBreakpoint = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const handleClickGithub = useCallback(() => {
+    ga.event({
+      category: 'CTA',
+      action: 'Click',
+      label: 'Menu - github source code button',
+    });
+  }, []);
 
   return (
     <AppBar
@@ -44,7 +56,11 @@ export function MenuBar() {
         >
           Jerec Frank
         </Typography>
-        {smBreakpoint ? <DrawerMobile menuItems={MENU_ITEM} /> : <ButtonMenu menuItems={MENU_ITEM} />}
+        {smBreakpoint ? (
+          <DrawerMobile menuItems={MENU_ITEM} onClickGithub={handleClickGithub} />
+        ) : (
+          <ButtonMenu menuItems={MENU_ITEM} onClickGithub={handleClickGithub} />
+        )}
       </Toolbar>
     </AppBar>
   );

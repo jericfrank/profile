@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+import ga from 'react-ga4';
 import { motion } from 'framer-motion';
 
 import {
@@ -10,6 +12,14 @@ interface Props {
 }
 
 function CustomBtn({ text, url }: Props) {
+  const handleClickButton = useCallback(() => {
+    ga.event({
+      category: 'CTA',
+      action: 'Click',
+      label: `Intro - let's chat button`,
+    });
+  }, []);
+
   return (
     <motion.div
       animate={{ y: [0, -10, 0] }}
@@ -21,6 +31,7 @@ function CustomBtn({ text, url }: Props) {
       }}
     >
       <Button
+        onClick={handleClickButton}
         component="a"
         href={url}
         target="_blank"

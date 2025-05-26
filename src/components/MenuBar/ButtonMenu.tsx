@@ -8,9 +8,10 @@ import { MenuItem } from './constants';
 
 interface Props {
   menuItems: MenuItem[];
+  onClickGithub: () => void;
 }
 
-export function ButtonMenu({ menuItems }: Props) {
+export function ButtonMenu({ menuItems, onClickGithub }: Props) {
   return (
     <Fragment>
       {menuItems.map(it => (
@@ -32,6 +33,7 @@ export function ButtonMenu({ menuItems }: Props) {
           rel="noopener noreferrer"
           color="inherit"
           sx={{ ml: 1 }}
+          onClick={onClickGithub}
         >
           <GitHub />
         </IconButton>

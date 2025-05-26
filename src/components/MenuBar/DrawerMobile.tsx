@@ -15,9 +15,10 @@ import { MenuItem } from './constants';
 
 interface Props {
   menuItems: MenuItem[];
+  onClickGithub: () => void;
 }
 
-export function DrawerMobile({ menuItems }: Props) {
+export function DrawerMobile({ menuItems, onClickGithub }: Props) {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = useCallback(
@@ -52,6 +53,7 @@ export function DrawerMobile({ menuItems }: Props) {
               rel="noopener noreferrer"
               color="inherit"
               sx={{ ml: 1 }}
+              onClick={onClickGithub}
             >
               <GitHub />
             </IconButton>

@@ -1,7 +1,34 @@
+import { useCallback } from 'react';
+import ga from 'react-ga4';
+
 import { Box, Typography, IconButton, Stack, Divider } from '@mui/material';
 import { GitHub, LinkedIn, Mail } from '@mui/icons-material';
 
 export default function Footer() {
+  const handleClickMail = useCallback(() => {
+    ga.event({
+      category: 'CTA',
+      action: 'Click',
+      label: 'Footer - gmail',
+    });
+  }, []);
+
+  const handleClickGithub = useCallback(() => {
+    ga.event({
+      category: 'CTA',
+      action: 'Click',
+      label: 'Footer - github',
+    });
+  }, []);
+
+  const handleClickLinkedIn = useCallback(() => {
+    ga.event({
+      category: 'CTA',
+      action: 'Click',
+      label: 'Footer - linkedIn',
+    });
+  }, []);
+
   return (
     <Box component="footer" sx={{ mt: 10, bgcolor: 'background.paper' }}>
       <Divider sx={{ mb: 3 }} />
@@ -23,6 +50,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             color="inherit"
+            onClick={handleClickMail}
           >
             <Mail />
           </IconButton>
@@ -32,6 +60,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             color="inherit"
+            onClick={handleClickGithub}
           >
             <GitHub />
           </IconButton>
@@ -41,6 +70,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             color="inherit"
+            onClick={handleClickLinkedIn}
           >
             <LinkedIn />
           </IconButton>
