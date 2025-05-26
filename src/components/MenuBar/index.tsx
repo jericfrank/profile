@@ -1,15 +1,15 @@
 import { useCallback } from 'react';
 import ga from 'react-ga4';
-import { Link as RouterLink } from 'react-router-dom';
 
 import {
   AppBar,
   Toolbar,
-  Typography,
   useTheme,
   useMediaQuery,
+  Box,
 } from '@mui/material';
 
+import { AvatarCircle } from './AvatarCircle';
 import { ButtonMenu } from './ButtonMenu';
 import { DrawerMobile } from './DrawerMobile';
 import { MENU_ITEM } from './constants';
@@ -30,10 +30,9 @@ export function MenuBar() {
   return (
     <AppBar
       position="sticky"
-      elevation={0}
+      elevation={smBreakpoint ? 2 : 0}
       sx={{
         bgcolor: '#fff',
-        boxShadow: 'none',
         color: 'black',
       }}
     >
@@ -48,14 +47,11 @@ export function MenuBar() {
           },
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}
-          component={RouterLink}
-          to="/" 
+        <Box
+          sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit', my: 2 }}
         >
-          Jerec Frank
-        </Typography>
+          <AvatarCircle />
+        </Box>
         {smBreakpoint ? (
           <DrawerMobile menuItems={MENU_ITEM} onClickGithub={handleClickGithub} />
         ) : (
