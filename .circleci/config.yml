@@ -15,7 +15,15 @@ jobs:
 
       - run:
           name: Build React app
-          command: yarn build
+          command: |
+            REACT_APP_FIREBASE_KEY="${REACT_APP_FIREBASE_KEY}" \
+            REACT_APP_FIREBASE_DOMAIN="${REACT_APP_FIREBASE_DOMAIN}" \
+            REACT_APP_FIREBASE_DB="${REACT_APP_FIREBASE_DB}" \
+            REACT_APP_FIREBASE_PROJECT_ID="${REACT_APP_FIREBASE_PROJECT_ID}" \
+            REACT_APP_FIREBASE_BUCKET="${REACT_APP_FIREBASE_BUCKET}" \
+            REACT_APP_FIREBASE_MSG_SENDER_ID="${REACT_APP_FIREBASE_MSG_SENDER_ID}" \
+            REACT_APP_FIREBASE_APP_ID="${REACT_APP_FIREBASE_APP_ID}" \
+            yarn build
 
       - persist_to_workspace:
           root: .
@@ -57,7 +65,9 @@ jobs:
 workflows:
   build-and-deploy:
     jobs:
-      - build
+      - build:
+          context:
+            - profile-ci-context
       - deploy:
           requires:
             - build
