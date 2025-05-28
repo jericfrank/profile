@@ -18,18 +18,31 @@ This project demonstrates a production-ready ReactJS app styled with Material UI
 * **AWS EC2 (Ubuntu)** for hosting the app
 * **Certbot (Let's Encrypt)** to provision free SSL certificates
 * **CircleCI** for Continuous Integration and Continuous Deployment (CI/CD)
+* **Firebase** for database (Cloud Firestore)
 
 ---
 
 ## Development
 
-1. Install dependencies:
+1. Environment variables:
+
+```
+REACT_APP_FIREBASE_KEY=
+REACT_APP_FIREBASE_DOMAIN=
+REACT_APP_FIREBASE_DB=
+REACT_APP_FIREBASE_PROJECT_ID=
+REACT_APP_FIREBASE_BUCKET=
+REACT_APP_FIREBASE_MSG_SENDER_ID=
+REACT_APP_FIREBASE_APP_ID=
+```
+
+2. Install dependencies:
 
 ```bash
 yarn install
 ```
 
-2. Run locally with hot reload:
+3. Run locally with hot reload:
 
 ```bash
 yarn start
